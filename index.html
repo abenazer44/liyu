@@ -12,9 +12,9 @@
 <style>
   /* Palette from Habesha cloth: shemma cotton, maroon, ochre gold, green */
   :root { --ink:#2a1d17; --muted:#76665a; --line:#e6dccb; --bg:#f8f3ea; --card:#fffdf9; --tile:#efe7d9; --wa:#14804a;
-          --accent:#8c1d2c; --gold:#b8892f; --foot:#2a1d17; --foot-ink:#f3ece0; --foot-muted:#bfb2a3; }
-  html[data-theme="dark"] { --ink:#efe6d8; --muted:#a8998a; --line:#33291f; --bg:#16110e; --card:#1e1813; --tile:#241c16; --wa:#1a9a5a;
-          --accent:#e0a94a; --gold:#e0a94a; --foot:#0e0a08; --foot-ink:#e9e1d4; --foot-muted:#9c8f81; }
+          --accent:#8c1d2c; --gold:#b08327; --gold-line:rgba(176,131,39,.35); --herobg:#f3e9d6; --foot:#2a1d17; --foot-ink:#f3ece0; --foot-muted:#bfb2a3; }
+  html[data-theme="dark"] { --ink:#efe6d8; --muted:#a8998a; --line:#33291f; --bg:#0f0b08; --card:#18120d; --tile:#1f1812; --wa:#1a9a5a;
+          --accent:#e2b65c; --gold:#d6a94e; --gold-line:rgba(214,169,78,.35); --herobg:#16100b; --foot:#0a0705; --foot-ink:#e9e1d4; --foot-muted:#9c8f81; }
   * { box-sizing:border-box; margin:0; padding:0; }
   body { background:var(--bg); color:var(--ink); font-family:"Source Serif 4", Georgia, serif; font-size:16px; }
   .am, html[data-lang="am"] body { font-family:"Abyssinica SIL", "Nyala", serif; }
@@ -23,7 +23,6 @@
   .l2 { display:block; font-size:.78em; color:var(--muted); font-weight:400; margin-top:1px; }
   a { color:inherit; }
   .wrap { max-width:1140px; margin:0 auto; padding:0 20px; }
-  .tibeb { height:8px; background:repeating-linear-gradient(90deg,#2a1d17 0 12px,#d9a441 12px 15px,#1f6b45 15px 27px,#d9a441 27px 30px,#a3242e 30px 42px,#d9a441 42px 45px); }
 
   /* top bar */
   .nav { border-bottom:1px solid var(--line); background:var(--bg); position:sticky; top:0; z-index:10; }
@@ -91,6 +90,24 @@
   .wa-float { position:fixed; right:16px; bottom:16px; width:56px; height:56px; border-radius:50%; background:#25d366; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(0,0,0,.2); z-index:20; }
   .wa-float svg { width:30px; height:30px; fill:#fff; }
 
+
+  /* Gold tibeb: Kokob (stepped diamond) and Meskel (cross) motifs, coloured by --gold via CSS masks */
+  :root { --band:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2240%22 viewBox=%220 0 64 40%22%3E%3Crect y=%221%22 width=%2264%22 height=%222%22/%3E%3Crect y=%226%22 width=%2264%22 height=%221%22/%3E%3Crect y=%2233%22 width=%2264%22 height=%221%22/%3E%3Crect y=%2237%22 width=%2264%22 height=%222%22/%3E%3Cpath d=%22M32 9 L43 20 L32 31 L21 20 Z M32 12.5 L39.5 20 L32 27.5 L24.5 20 Z%22 fill-rule=%22evenodd%22/%3E%3Cpath d=%22M32 16 L36 20 L32 24 L28 20 Z%22/%3E%3Cpath d=%22M-1.5 13h3v5.5h5.5v3h-5.5v5.5h-3v-5.5h-5.5v-3h5.5z%22/%3E%3Cpath d=%22M62.5 13h3v5.5h5.5v3h-5.5v5.5h-3v-5.5h-5.5v-3h5.5z%22/%3E%3Ccircle cx=%2214%22 cy=%2220%22 r=%221.6%22/%3E%3Ccircle cx=%2250%22 cy=%2220%22 r=%221.6%22/%3E%3Cpath d=%22M8 10 L11 7 L14 10 Z M50 10 L53 7 L56 10 Z M8 30 L11 33 L14 30 Z M50 30 L53 33 L56 30 Z%22/%3E%3C/svg%3E"); --lattice:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22%3E%3Cpath d=%22M28.5 21h3v7.5h7.5v3h-7.5v7.5h-3v-7.5h-7.5v-3h7.5z%22/%3E%3Cpath d=%22M0 -6 L6 0 L0 6 L-6 0 Z M60 -6 L66 0 L60 6 L54 0 Z M0 54 L6 60 L0 66 L-6 60 Z M60 54 L66 60 L60 66 L54 60 Z%22/%3E%3Ccircle cx=%2230%22 cy=%220%22 r=%221.2%22/%3E%3Ccircle cx=%220%22 cy=%2230%22 r=%221.2%22/%3E%3Ccircle cx=%2260%22 cy=%2230%22 r=%221.2%22/%3E%3Ccircle cx=%2230%22 cy=%2260%22 r=%221.2%22/%3E%3C/svg%3E"); --cross:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2220%22 height=%2220%22 viewBox=%220 0 20 20%22%3E%3Cpath d=%22M10 0 L20 10 L10 20 L0 10 Z M10 3.5 L16.5 10 L10 16.5 L3.5 10 Z%22 fill-rule=%22evenodd%22/%3E%3Cpath d=%22M8.8 5.5h2.4v3.3h3.3v2.4h-3.3v3.3h-2.4v-3.3h-3.3v-2.4h3.3z%22/%3E%3C/svg%3E"); }
+  body { position:relative; }
+  body::before { content:""; position:fixed; inset:0; z-index:-1; background:var(--gold); opacity:.07;
+    -webkit-mask:var(--lattice) repeat; mask:var(--lattice) repeat; pointer-events:none; }
+  html[data-theme="dark"] body::before { opacity:.09; }
+  .tibeb { height:40px; background:var(--gold); -webkit-mask:var(--band) repeat-x center; mask:var(--band) repeat-x center; }
+  .herobg { position:relative; background:var(--herobg); overflow:hidden; }
+  .herobg::before { content:""; position:absolute; inset:0; background:var(--gold); opacity:.16;
+    -webkit-mask:var(--lattice) repeat; mask:var(--lattice) repeat; }
+  .herobg > * { position:relative; }
+  h2::before { content:""; display:inline-block; width:20px; height:20px; vertical-align:-3px; margin-right:10px; background:var(--gold); -webkit-mask:var(--cross) no-repeat center; mask:var(--cross) no-repeat center; }
+  .nav { border-bottom-color:var(--gold-line); }
+  .col .pic, .item img { box-shadow:0 0 0 1px var(--gold-line); }
+  .ghost { border-bottom-color:var(--gold); }
+  .footer { background:var(--foot); }
+
   @media (max-width:760px) {
     .navin { height:62px; } .logo img { width:40px; height:40px; } .logo b { font-size:20px; } .logo span { display:none; }
     .ctrl { font-size:13px; gap:0; } .ctrl button { padding:4px 5px; }
@@ -113,7 +130,7 @@
   </div>
 </div></header>
 
-<div class="wrap">
+<div class="herobg"><div class="wrap">
   <section class="hero">
     <div>
       <h1 data-t="tag"></h1>
@@ -127,7 +144,7 @@
       <img src="img/beshti-392_3.jpg" alt=""><img src="img/beshti-392_1.jpg" alt=""><img src="img/beshti-392_2.jpg" alt="">
     </div>
   </section>
-</div>
+</div></div>
 <div class="tibeb"></div>
 
 <div class="wrap" id="shop">
