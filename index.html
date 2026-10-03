@@ -24,19 +24,25 @@
   a { color:inherit; }
   .wrap { max-width:1100px; margin:0 auto; padding:0 20px; }
   .tibeb { height:10px; background:repeating-linear-gradient(90deg,#2a1d17 0 12px,#d9a441 12px 15px,#1f6b45 15px 27px,#d9a441 27px 30px,#a3242e 30px 42px,#d9a441 42px 45px); }
-  .band { background:var(--band); color:var(--band-ink); }
-  .band .l2 { color:var(--band-muted); }
-  .top { display:flex; justify-content:space-between; align-items:center; gap:10px; padding:12px 0; font-size:14px; color:var(--band-muted); flex-wrap:wrap; }
-  .ctrl { display:flex; gap:14px; align-items:center; }
-  .ctrl button { background:none; border:0; font:inherit; color:var(--band-muted); cursor:pointer; padding:2px 3px; }
-  .ctrl button.on { color:var(--band-ink); text-decoration:underline; text-underline-offset:4px; }
-  .ctrl .sep { opacity:.5; }
-  .head { padding:14px 0 26px; }
-  .name { font-size:40px; font-weight:600; line-height:1.15; }
-  .tag { margin-top:8px; font-size:19px; color:#e8b85a; }
-  .desc { margin-top:10px; max-width:660px; color:var(--band-muted); line-height:1.55; }
-  .contact { margin-top:14px; font-size:15px; line-height:1.6; }
-  .contact a { text-decoration:none; border-bottom:1px solid var(--band-ink); }
+  .nav { background:var(--band); color:var(--band-ink); }
+  .navin { display:flex; justify-content:space-between; align-items:center; gap:12px; height:64px; }
+  .logo { display:flex; align-items:baseline; gap:10px; text-decoration:none; }
+  .logo .am { font-size:27px; font-weight:700; }
+  .logo .en { font-size:16px; color:var(--band-muted); }
+  .ctrl { display:flex; gap:6px; align-items:center; font-size:14px; }
+  .ctrl button { background:none; border:1px solid transparent; font:inherit; color:var(--band-muted); cursor:pointer; padding:4px 8px; border-radius:3px; }
+  .ctrl button.on { color:var(--band-ink); border-color:var(--band-muted); }
+  .ctrl #theme { font-size:17px; line-height:1; margin-left:6px; }
+  .hero { background:var(--band); color:var(--band-ink); }
+  .heroin { display:grid; grid-template-columns:1.25fr 1fr; gap:28px; align-items:end; }
+  .htext { padding:44px 0 52px; align-self:center; }
+  .hpic { width:100%; height:440px; object-fit:cover; object-position:top; display:block; }
+  .tag { font-size:42px; font-weight:700; color:#e8b85a; line-height:1.15; }
+  .tag .l2 { font-size:.62em; font-weight:400; }
+  .hsub { margin-top:12px; color:var(--band-muted); font-size:18px; max-width:460px; line-height:1.5; }
+  .hero .l2 { color:var(--band-muted); }
+  .cta { display:inline-block; margin-top:24px; background:var(--wa); color:#fff; text-decoration:none; padding:11px 18px; border-radius:3px; font-size:16px; white-space:nowrap; }
+  .cta .l2 { color:#e3f3ea; }
   h2 { font-size:22px; font-weight:600; padding:24px 0 12px; color:var(--accent); }
   .cols { display:grid; grid-template-columns:repeat(7,1fr); gap:12px; }
   .col { cursor:pointer; background:none; border:0; text-align:left; font:inherit; color:inherit; }
@@ -63,14 +69,17 @@
   .empty a { color:var(--accent); }
   .footer { background:var(--foot); color:var(--foot-ink); }
   .footer .l2 { color:var(--foot-muted); }
-  .foot { padding:26px 0 24px; display:grid; grid-template-columns:repeat(3,1fr); gap:20px; font-size:15px; line-height:1.65; }
+  .foot { padding:26px 0 24px; display:grid; grid-template-columns:1.4fr 1fr .8fr 1fr; gap:20px; font-size:15px; line-height:1.65; }
   .foot h3 { font-size:15px; font-weight:600; margin-bottom:4px; color:#e8b85a; }
   .foot a { text-decoration:none; border-bottom:1px solid var(--foot-muted); }
   .note { border-top:1px solid rgba(255,255,255,.15); padding:12px 0 80px; font-size:13px; color:var(--foot-muted); }
   .wa-float { position:fixed; right:16px; bottom:16px; width:54px; height:54px; border-radius:50%; background:#25d366; display:flex; align-items:center; justify-content:center; }
   .wa-float svg { width:30px; height:30px; fill:#fff; }
   @media (max-width:760px) {
-    .name { font-size:32px; }
+    .logo .am { font-size:23px; } .logo .en { display:none; }
+    .ctrl { font-size:13px; gap:2px; } .ctrl button { padding:4px 5px; }
+    .heroin { grid-template-columns:1fr; gap:0; } .hpic { height:380px; order:-1; margin:0 -20px; width:calc(100% + 40px); } .htext { padding:22px 0 28px; }
+    .tag { font-size:30px; } .cta { display:block; text-align:center; }
     .cols { display:flex; overflow-x:auto; scrollbar-width:none; gap:12px; margin-right:-20px; padding:3px 20px 3px 3px; }
     .col { flex:0 0 118px; }
     .grid { grid-template-columns:repeat(2,1fr); gap:22px 12px; }
@@ -79,25 +88,24 @@
 </style>
 </head>
 <body>
-<header class="band"><div class="wrap">
-  <div class="top">
-    <span data-t="loc"></span>
-    <span class="ctrl">
-      <span><button data-l="am" class="am">አማርኛ</button> <span class="sep">|</span> <button data-l="en" class="en">English</button> <span class="sep">|</span> <button data-l="both"><span class="am">አማርኛ</span> + <span class="en">English</span></button></span>
-      <button id="theme"></button>
-    </span>
-  </div>
-
-  <div class="head">
-    <div class="name" data-t="name"></div>
-    <div class="tag" data-t="tag"></div>
-    <p class="desc" data-t="desc"></p>
-    <div class="contact"><span data-t="orderline"></span> <a href="https://wa.me/971543484316">054 348 4316</a> · <a href="https://wa.me/971543808946">054 380 8946</a></div>
+<header class="nav"><div class="wrap navin">
+  <a class="logo" href="#"><span class="am">ልዩ ዲዛይን</span><span class="en">Liyu Design</span></a>
+  <div class="ctrl">
+    <button data-l="am" class="am">አማርኛ</button><button data-l="en" class="en">English</button><button data-l="both"><span class="am">አማ</span> + <span class="en">EN</span></button>
+    <button id="theme" aria-label="Dark / light"></button>
   </div>
 </div></header>
+<section class="hero"><div class="wrap heroin">
+  <div class="htext">
+    <div class="tag" data-t="tag"></div>
+    <div class="hsub" data-t="hsub"></div>
+    <a class="cta" href="https://wa.me/971543484316" data-t="cta"></a>
+  </div>
+  <img class="hpic" src="img/hero.jpg" alt="">
+</div></section>
+<div class="tibeb"></div>
 <div class="tibeb"></div>
 <div class="wrap">
-
   <h2 data-t="collH"></h2>
   <div class="cols" id="cols"></div>
 
@@ -111,6 +119,7 @@
 <div class="tibeb"></div>
 <footer class="footer"><div class="wrap">
   <div class="foot">
+    <div><h3 data-t="aboutH"></h3><span data-t="desc"></span></div>
     <div><h3 data-t="addrH"></h3><span data-t="addr"></span><br><a href="https://maps.app.goo.gl/Tey6KQ9eMenKBVwo9" data-t="map"></a></div>
     <div><h3>WhatsApp</h3>054 348 4316<br>054 380 8946</div>
     <div><h3 data-t="tgH"></h3><span id="tglinks"></span></div>
@@ -123,7 +132,7 @@
 <script>
 const T = {
   am: {
-    loc:'ሻርጃ · ዱባይ', name:'ልዩ ዲዛይን', tag:'ጥራት + ፍጥነት + ዋጋ = ልዩ አስብሎናል።',
+    loc:'ሻርጃ · ዱባይ', name:'ልዩ ዲዛይን', tag:'ጥራት + ፍጥነት + ዋጋ = ልዩ', hsub:'ይምረጡ፣ በWhatsApp ይዘዙ፣ ቤቶ ድረስ ይመጣል። ሻርጃ · ዱባይ', cta:'በWhatsApp ይዘዙ', aboutH:'ስለ እኛ',
     desc:'በሽሮሜዳ፣ መርካቶ፣ ቦሌና ጨርቆስ ተመስግነናል፤ አሁን ከዱባይ/ሻርጃ አለምአቀፍ ሆነናል። የሚወዱትን ይምረጡ፣ WhatsAppን ይጫኑ፣ ያዘዙት ቤቶ ድረስ ይመጣል።',
     orderline:'ለማዘዝ በWhatsApp:', collH:'በስብስብ ይግዙ', all:'ሁሉም', search:'ፈልግ (ለምሳሌ 346)',
     order:'በWhatsApp እዘዝ', msg:'ሰላም፣ ይህን ማዘዝ እፈልጋለሁ: ', chiffonName:'ሽፎን ቁ. ', chiffonSub:'የቱርክ / የህንድ ሽፎን · 3 ቀለሞች',
@@ -134,7 +143,7 @@ const T = {
     note:'ይህ ለልዩ ዲዛይን የተዘጋጀ ናሙና ዲዛይን ነው። ገና አልተለቀቀም። ፎቶዎቹ ከቴሌግራም ቻናላችሁ የተወሰዱ ናቸው።'
   },
   en: {
-    loc:'Sharjah · Dubai', name:'Liyu Design', tag:'Quality + speed + price. That is why they call us Liyu.',
+    loc:'Sharjah · Dubai', name:'Liyu Design', tag:'Quality + speed + price = Liyu', hsub:'Choose, order on WhatsApp, delivered to your door. Sharjah · Dubai', cta:'Order on WhatsApp', aboutH:'About us',
     desc:'Loved in Shiromeda, Merkato, Bole and Cherkos, and now in Dubai and Sharjah. Choose what you like, message us on WhatsApp, and your order comes to your door.',
     orderline:'Order on WhatsApp:', collH:'Shop by collection', all:'All', search:'Search (e.g. 346)',
     order:'Order on WhatsApp', msg:'Hi, I would like to order: ', chiffonName:'Chiffon No. ', chiffonSub:'Turkish / Indian chiffon · 3 colours',
@@ -182,8 +191,7 @@ function render() {
   H.dataset.lang = lang; H.dataset.theme = theme; H.lang = lang === 'en' ? 'en' : 'am';
   document.querySelectorAll('[data-t]').forEach(e => e.innerHTML = k(e.dataset.t));
   document.querySelectorAll('[data-l]').forEach(b => b.classList.toggle('on', b.dataset.l === lang));
-  const tl = theme === 'light' ? 'dark' : 'light';
-  document.getElementById('theme').innerHTML = lang === 'both' ? `${T.am[tl]} · ${T.en[tl]}` : T[lang][tl];
+  document.getElementById('theme').textContent = theme === 'light' ? '\u263E' : '\u2600';
   document.getElementById('q').placeholder = lang === 'both' ? 'ፈልግ / Search (346)' : T[lang].search;
 
   const count = c => ITEMS.filter(i => i.cat === c).length;
